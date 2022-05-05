@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -80,13 +81,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $flight = User::find($id);
- 
-        $flight->delete();
-        return response()->json([
-            'status'=>'succes'
-        ]);
+    public function destroy(User $user)
+    { 
+        try{
+            $user->delete();
+            return response()->json([
+                'status'=>'succes'
+            ]);  
+        } catch (Exception $e) {
+            return response()->json([
+                'status'=>'error',
+                'message'=> 'Wystąpił błąd!'
+            ])->setStatusCode(500);
+        }
+        
+        
     }
 }
