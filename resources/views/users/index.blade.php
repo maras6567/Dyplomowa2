@@ -37,17 +37,51 @@
 @section('javascript')
     $(function() {
         $('.delete').click(function() {
-        $.ajax({
-            method: "DELETE",
-            url: "/users/" + $(this).data("id"),
-            //data: { id: $(this).data("id" }
+         
+         
+         
+        Swal.fire({
+        title: 'Czy napewno usunąć rekord?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Tak, usuń!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                method: "DELETE",
+                url: "/users/" + $(this).data("id") ,
+                //data: { id: $(this).data("id"  }
+            })
+            .done(function( response ) {
+                window.location.reload();
+            })
+            .fail(function (response) {
+                
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Coś poszło nie tak!',
+                })
+
+            });
+        }
         })
-        .done(function( response ) {
-            window.location.reload();
-        })
-        .fail(function (response) {
-            alert('ERROR');
-        });
+
+
+
+        //$.ajax({
+        //    method: "DELETE",
+        //    url: "/users/" + $(this).data("id"),
+        //    //data: { id: $(this).data("id" }
+        //})
+        //.done(function( response ) {
+        //    window.location.reload();
+        //})
+        //.fail(function (response) {
+        //    alert('ERROR');
+        //});
 
         //console.log($(this).data("id")); 
         });
