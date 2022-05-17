@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\UpserProductRequest;
+use App\Http\Requests\UpsertProductRequest;
 
 class ProductController extends Controller
 {
@@ -41,7 +41,7 @@ class ProductController extends Controller
      * @param  UpserProductRequest  $request
      * @return RedirectResponse
      */
-    public function store(UpserProductRequest $request): RedirectResponse
+    public function store(UpsertProductRequest $request): RedirectResponse
     {
         $product = new Product($request->validated());
         if ($request->hasFile('image')) {
@@ -84,7 +84,7 @@ class ProductController extends Controller
      * @param  Product  $product
      * @return View
      */
-    public function update(UpserProductRequest $request, Product $product) : RedirectResponse
+    public function update(UpsertProductRequest $request, Product $product) : RedirectResponse
     {
         $product->fill($request->validated());
         if ($request->hasFile('image')) {

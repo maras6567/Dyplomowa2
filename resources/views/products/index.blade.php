@@ -5,14 +5,14 @@
     <div class="row"> 
 
         <div class="col-6">
-           <h1> Lista produktów </h1>
+           <h1> {{__('translate.product.add_form.title3')}} </h1>
             
         </div>
         
         <div class="col-6" >
             
             <a class="right1" href="{{route('products.create')}}" >
-                <button type="button" class="btn btn-primary"> Dodaj </button>
+                <button type="button" class="btn btn-primary"> {{__('translate.button.add')}} </button>
             </a>
         </div>
         
@@ -22,11 +22,11 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Opis</th>
-        <th scope="col">Ilość</th>
-        <th scope="col">Cena</th>
-        <th scope="col">Akcje</th>
+        <th scope="col">{{__('translate.product.add_form.name')}}</th>
+        <th scope="col">{{__('translate.product.add_form.description')}}</th>
+        <th scope="col">{{__('translate.product.add_form.amount')}}</th>
+        <th scope="col">{{__('translate.product.add_form.price')}}</th>
+        <th scope="col">{{__('translate.columns.actions')}}</th>
     </tr>
     </thead>
     <tbody>
@@ -63,6 +63,7 @@
     
 @section('javascript')
     const deleteUrl = "{{url('products')}}/";
+    const confirmDelete = "{{__('translate.messages.delete_confirm')}}";
 @endsection
 
 @section('js-files')
