@@ -26,6 +26,7 @@
         <th scope="col">{{__('translate.product.add_form.description')}}</th>
         <th scope="col">{{__('translate.product.add_form.amount')}}</th>
         <th scope="col">{{__('translate.product.add_form.price')}}</th>
+        <th scope="col">{{__('translate.product.add_form.category')}}</th>
         <th scope="col">{{__('translate.columns.actions')}}</th>
     </tr>
     </thead>
@@ -37,6 +38,7 @@
                 <td>{{ $product->description }}</td>
                 <td>{{ $product->amount }}</td>
                 <td>{{ $product->price }}</td>
+                <td>@if($product->hasCategory()){{$product->category->name }}@endif</td>
                 <td>
                     <a href="{{route('products.show', $product->id)}}"> 
                     <button class="btn btn-primary btn-sm" >
