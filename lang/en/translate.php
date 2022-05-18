@@ -7,6 +7,12 @@ Indywiduualne tłumaczenia
 */
 
 return [
+    'welcome' => [
+        'products'=> 'Products',
+        'categories' => 'Categories',
+        'price' => 'Price',
+        'filter' => 'Filter',
+    ],
     'columns' => [
         'actions'=> 'Action',
     ],
