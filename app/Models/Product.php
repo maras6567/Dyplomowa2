@@ -32,10 +32,10 @@ class Product extends Model
 
     public function isSelectedCategory(int $category_id): bool 
     {
-        return (!is_null($this -> hasCategory()) && $this->category->id == $category_id );
+        return ($this -> hasCategory() && $this->category->id == $category_id );
     }
     public function hasCategory(): bool 
     {
-        return !is_null($this -> category);
+        return (!is_null($this -> category));
     }
 }
