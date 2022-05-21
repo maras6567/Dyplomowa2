@@ -17,9 +17,20 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();
 
-mix.browserSync('127.0.0.1:8000');
-//mix.webpackConfig({
-//    stats: {
-//        children: true,
-//    },
-//});
+mix.browserSync('127.0.0.1:8000')
+    //mix.webpackConfig({
+    //    stats: {
+    //        children: true,
+    //    },
+    //});
+
+.copy(
+    'node_modules/@fortawesome/fontawesome-free/webfonts',
+    'public/webfonts'
+);
+
+mix.webpackConfig({
+    stats: {
+        children: true,
+    },
+});
