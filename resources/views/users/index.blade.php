@@ -5,7 +5,7 @@
     @include('helpers.flash-messages')
     <div class="row"> 
         <div class="col-6">
-           <h1> {{__('translate.user.title')}} </h1>            
+           <h1><i class="fa-solid fa-users"></i>  {{__('translate.user.title')}} </h1>            
         </div>
         
     </div>
@@ -32,7 +32,7 @@
                 <td>{{ $user->phone_number }}</td>
                 <td>
                     <button class="btn btn-danger btn-sm delete" data-id="{{ $user->id}}">
-                        X
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </td>
             </tr>
