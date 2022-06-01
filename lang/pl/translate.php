@@ -20,6 +20,14 @@ return [
         'save'=> 'Zapisz',
         'add' =>'Dodaj',
     ],
+    'user' => [
+        'title'=> 'Lista użytkowników',
+        'status'=>[
+            'delete'=>[
+                'success' => 'Usunięto użytkownika',
+            ],
+        ],
+    ],
     'messages' => [
         'delete_confirm'=> 'Czy na pewno usunąć produkt?',
     ],
@@ -34,7 +42,18 @@ return [
             'amount' => 'Ilość',
             'price' => 'Cena',
             'image' => 'Grafika',
-            'category' => 'Kategoria',
-        ]
-    ]
+            'category' => 'Kategoria',           
+        ],
+        'status' => [
+            'store' =>[
+                'success' => 'Dodano produkt!'
+            ],
+            'update' =>[
+                'success' => 'Zaktualizowano produkt!'
+            ],
+            'delete' =>[
+                'success' => 'Usunięto produkt!'
+            ],
+        ],
+    ],
 ];

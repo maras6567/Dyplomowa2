@@ -2,13 +2,17 @@
 
 @section('content')
 <div class="container">
+    
+            
+        @include('helpers.flash-messages')
+    
     <div class="row"> 
 
         <div class="col-6">
            <h1> {{__('translate.product.add_form.title3')}} </h1>
             
         </div>
-        
+         
         <div class="col-6" >
             
             <a class="right1" href="{{route('products.create')}}" >

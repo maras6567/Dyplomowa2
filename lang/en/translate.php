@@ -20,6 +20,9 @@ return [
         'save'=> 'Save',
         'add' =>'Add',
     ],
+    'user' => [
+        'title'=> 'Lista użytkowników',
+    ],
     'messages' => [
         'delete_confirm'=> 'Are you sure?',
     ],
@@ -35,6 +38,17 @@ return [
             'price' => 'Price',
             'image' => 'Image',
             'category' => 'Category',
-        ]
+        ],
+        'status' => [
+            'store' =>[
+                'success' => 'Add product!'
+            ],
+            'update' =>[
+                'success' => 'Update product!'
+            ],
+            'delete' =>[
+                'success' => 'Delete product!'
+            ],
+        ],
     ]
 ];

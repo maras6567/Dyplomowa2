@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpsertProductRequest;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -51,7 +52,7 @@ class ProductController extends Controller
             $product->image_path = $request->file('image')->store('products');
         }
         $product->save();
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('status', __('translate.product.status.store.success'));
     }
 
     /**
@@ -96,7 +97,7 @@ class ProductController extends Controller
         }
         
         $product->save();
-        return redirect(route('products.index'));
+        return redirect(route('products.index'))->with('status', __('translate.product.status.update.success'));
     }
 
     /**
@@ -109,6 +110,7 @@ class ProductController extends Controller
     { 
         try{
             $product->delete();
+            Session::flash('status', __('translate.product.status.delete.success'));
             return response()->json([
                 'status'=>'succes'
             ]);  

@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container">      
+    @include('helpers.flash-messages')
+    <div class="row"> 
+        <div class="col-6">
+           <h1> {{__('translate.user.title')}} </h1>            
+        </div>
+        
+    </div>
+
+
     <table class="table table-bordered">
     <thead>
     <tr>
@@ -36,6 +45,7 @@
     
 @section('javascript')
     const deleteUrl = "{{url('users')}}/";
+    const confirmDelete = "{{__('translate.messages.delete_confirm')}}";
 @endsection
 
 @section('js-files')
