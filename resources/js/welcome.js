@@ -11,6 +11,36 @@ $(function() {
         getProducts($('a.products-actual-count').first().text());
     });
 
+
+    $('button.add-cart-button').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+                method: "POST",
+                url: WELCOME_DATA.addToCart + $(this).data('id')
+            })
+            .done(function() {
+                Swal.fire({
+                    title: 'Brawo!',
+                    text: 'Produkt dodany do koszyka!',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '<i class="fa-solid fa-cart-plus"></i> Przejdź do ulubionych!',
+                    cancelButtonText: '<i class="fa-shopping-bag"></i>Kontynuuj'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        alert('OK');
+                    }
+                })
+            })
+            .fail(function() {
+                Swal.fire('Oops...', 'Wystąpił bład', 'error');
+
+            });
+    });
+
+
     function getProducts(paginate) {
         const form = $('form.sidebar-filter').serialize();
         $.ajax({
@@ -44,9 +74,9 @@ $(function() {
 
     function getImage(product) {
         if (!!product.image_path) {
-            return storagePath + product.image_path;
+            return WELCOME_DATA.storagePath + product.image_path;
         }
-        return defaultImage;
+        return WELCOME_DATA.defaultImage;
     };
 
 });
