@@ -104,18 +104,20 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3 justify-content-center">
-                            <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class=" col-md-6">
                                 @if(!is_null($products->image_path))
-                                    <img src="{{asset('storage/' . $products->image_path) }}" alt="Zdjęcie produktu">
+                                    <a href="{{ route('products.downloadImage', $products->id) }}">
+                                        <img src="{{asset('storage/' . $products->image_path) }}" alt="Zdjęcie produktu">
+                                    </a>        
                                 @endif
                             </div>
                         </div>
 
                         
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="row mb-0 float-right">
+                            <div class="col-md-6 ">
                                 <button type="submit" class="btn btn-primary">
                                     Zapisz
                                 </button>
