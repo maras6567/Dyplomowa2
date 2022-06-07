@@ -34,7 +34,7 @@ $(function() {
                     }
                 })
             })
-            .fail(function() {
+            .fail(function(data) {
                 Swal.fire('Oops...', 'Wystąpił bład', 'error');
 
             });

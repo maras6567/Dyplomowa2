@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Dtos\Cart\CartDto;
-use App\Dtos\Cart\CartItemDto;
+use App\ValueObjects\Cart;
+use App\ValueObjects\CartItem;
 use App\Models\Product;
-use Illuminate\Http\JsonResponse;
+//use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CartController extends Controller
 {
@@ -17,40 +18,24 @@ class CartController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return View
      */
     public function index(): View
     {
-        dd(Session::get('cart', new CartDto()));
+        dd(Session::get('cart', new Cart()));
         return view('home');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UpserProductRequest  $product
+     * @param  Product $product
      * @return JsonResponse
      */
     public function store(Product $product): JsonResponse
     {
-        $cart = Session::get('cart', new CartDto());    
-        $items = $cart->getItems();
-        if(Arr::exists($items, $product->id)){
-            $items[$product->id]->incrementQuantity();
-        } else {
-            $cartItemDto = new CartItemDto();
-            $cartItemDto->setProductId($product->id);
-            $cartItemDto->setName($product->name);
-            $cartItemDto->setPrice($product->price);
-            $cartItemDto->setImagePath($product->image_path);
-            $cartItemDto->setQuantity(1);       
-            $items[$product->id] = $cartItemDto;
-        }
-        $cart->setItems($items);
-        $cart->incrementTotalQuantity();
-        $cart->incrementTotalSum($product->price);
-            
-        Session::put('cart', $cart);
+        $cart = Session::get('cart', new Cart());              
+        Session::put('cart', $cart->addItem($product));
         return response()->json([
             'status' => 'success'
         ]);
