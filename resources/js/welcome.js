@@ -24,10 +24,10 @@ $(function() {
                     text: 'Produkt dodany do koszyka!',
                     icon: 'success',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '<i class="fa-solid fa-cart-plus"></i> Przejdź do ulubionych!',
-                    cancelButtonText: '<i class="fa-shopping-bag"></i>Kontynuuj'
+                    //confirmButtonColor: '#3085d6',
+                    //cancelButtonColor: '#d33',
+                    confirmButtonText: '<i class="far fa-solid fa-cart-plus"></i> Przejdź do ulubionych!',
+                    cancelButtonText: '<i class="far fa-shopping-bag"></i>Kontynuuj'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         alert('OK');
@@ -36,7 +36,6 @@ $(function() {
             })
             .fail(function(data) {
                 Swal.fire('Oops...', 'Wystąpił bład', 'error');
-
             });
     });
 
@@ -65,6 +64,10 @@ $(function() {
                         '<i>PLN' + product.price + '</i>' +
                         '</h5>' +
                         '</div>' +
+
+                        '<button class="btn btn-success btn-sm add-cart-button"' + ' data-id="' + product.id + '">' +
+                        '<i class="fas fa-cart-plus"></i> Dodaj do ulubionych' +
+                        '</button>' +
                         '</div>' +
                         '</div>';
                     $('div#products-wrapper').append(html);
@@ -77,6 +80,6 @@ $(function() {
             return WELCOME_DATA.storagePath + product.image_path;
         }
         return WELCOME_DATA.defaultImage;
-    };
+    }
 
 });

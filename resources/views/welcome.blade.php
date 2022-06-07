@@ -52,7 +52,7 @@
                                     </h5>
                                     
                                 </div>
-                                <button class="btn btn-success btn-sm add-cart-button" data-id="{{ $product->id}}" >
+                                <button class="btn btn-success btn-sm add-cart-button" data-id="{{ $product->id}}" 
                                 @guest  
                                     disabled
                                 @endguest>
