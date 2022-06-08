@@ -22,8 +22,9 @@ class CartController extends Controller
      */
     public function index(): View
     {
-        dd(Session::get('cart', new Cart()));
-        return view('home');
+        return view('cart.index', [
+            'cart'=>Session::get('cart', new Cart())
+        ]);
     }
 
     /**

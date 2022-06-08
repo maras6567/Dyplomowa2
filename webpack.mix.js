@@ -16,7 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/welcome.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts')
-    .sourceMaps();
+    .sourceMaps()
+    .postCss('resources/css/cart.css', 'public/css');
 
 mix.browserSync('127.0.0.1:8000');
 mix.webpackConfig({

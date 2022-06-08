@@ -26,6 +26,14 @@ class Cart {
     {
 		return $this->items;
 	}
+
+    public function getSum(): float
+    {
+		return $this->items->sum(function($item) {
+            return $item->getSum();
+        });
+	}
+
     public function addItem(Product $product): Cart
     {
         $items = $this->items;
