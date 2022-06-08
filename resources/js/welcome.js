@@ -65,14 +65,43 @@ $(function() {
                         '</h5>' +
                         '</div>' +
 
-                        '<button class="btn btn-success btn-sm add-cart-button"' + ' data-id="' + product.id + '">' +
+                        '<button class="btn btn-success btn-sm add-cart-button-pagginate"' +
+                        ' data-id="' + product.id + '">' +
                         '<i class="fas fa-cart-plus"></i> Dodaj do ulubionych' +
                         '</button>' +
                         '</div>' +
                         '</div>';
                     $('div#products-wrapper').append(html);
+
+                });
+                $('button.add-cart-button-pagginate').click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                            method: "POST",
+                            url: WELCOME_DATA.addToCart + $(this).data('id')
+                        })
+                        .done(function() {
+                            Swal.fire({
+                                title: 'Brawo!',
+                                text: 'Produkt dodany do koszyka!',
+                                icon: 'success',
+                                showCancelButton: true,
+                                //confirmButtonColor: '#3085d6',
+                                //cancelButtonColor: '#d33',
+                                confirmButtonText: '<i class="far fa-solid fa-cart-plus"></i> Przejdź do ulubionych!',
+                                cancelButtonText: '<i class="far fa-shopping-bag"></i>Kontynuuj'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    alert('OK');
+                                }
+                            })
+                        })
+                        .fail(function(data) {
+                            Swal.fire('Oops...', 'Wystąpił bład', 'error');
+                        });
                 });
             });
+
     }
 
     function getImage(product) {
