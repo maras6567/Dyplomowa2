@@ -119,7 +119,8 @@
 const WELCOME_DATA = {
     storagePath: '{{ asset ('storage') }}/',
     defaultImage: '{{$defaultImage}}',
-    addToCart: '{{ url('cart') }}/'
+    addToCart: '{{ url('cart') }}/',
+    listCart: '{{ url('cart')}}'
 }
 
 @endsection

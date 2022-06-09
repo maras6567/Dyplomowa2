@@ -30,7 +30,7 @@ $(function() {
                     cancelButtonText: '<i class="far fa-shopping-bag"></i>Kontynuuj'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        alert('OK');
+                        window.location = WELCOME_DATA.listCart;
                     }
                 })
             })
@@ -92,7 +92,7 @@ $(function() {
                                 cancelButtonText: '<i class="far fa-shopping-bag"></i>Kontynuuj'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    alert('OK');
+                                    window.location = WELCOME_DATA.listCart;
                                 }
                             })
                         })
