@@ -35,6 +35,11 @@
                                                     <div class="cart_item_title">Suma</div>
                                                     <div class="cart_item_text">{{ $item->getSum() }}</div>
                                                 </div>
+                                                <div class="cart_item_total cart_info_col">
+                                                    <button class="btn btn-danger btn-sm delete" data-id="{{ $item->getProductId()}}">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </li>
                                     @endforeach
@@ -58,7 +63,7 @@
 @endsection
     
 @section('javascript')
-    const deleteUrl = "{{url('products')}}/";
+    const deleteUrl = "{{url('cart')}}/";
     const confirmDelete = "{{__('translate.messages.delete_confirm')}}";
 @endsection
 

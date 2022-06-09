@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\ValueObjects\Cart;
-use App\ValueObjects\CartItem;
+use Exception;
 use App\Models\Product;
-//use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+//use Illuminate\Http\JsonResponse;
+use App\ValueObjects\Cart;
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
+use App\ValueObjects\CartItem;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CartController extends Controller
@@ -42,4 +43,29 @@ class CartController extends Controller
         ]);
     }
 
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Product  $product
+     * @return Response
+     */
+    public function destroy(Product $product): JsonResponse
+    { 
+        try{
+            $cart = Session::get('cart', new Cart()); 
+            Session::put('cart', $cart->removeItem($product));
+            Session::flash('status', __('translate.product.status.delete.success'));
+            return response()->json([
+                'status'=>'succes'
+            ]);  
+        } catch (Exception $e) {
+            return response()->json([
+                'status'=>'error',
+                'message'=> 'Wystąpił błąd!'
+            ])->setStatusCode(500);
+        }
+        
+        
+    }
 }
